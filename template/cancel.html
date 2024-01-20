@@ -1,0 +1,23 @@
+<!-- templates/cancel.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancel Reservation</title>
+</head>
+
+<body>
+    <h1>Cancel Reservation</h1>
+    <p>Please enter your name to cancel your reservation:</p>
+    <form action="/cancel" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <button type="submit">Cancel Reservation</button>
+    </form>
+    <p><a href="/">Return to Home</a></p>
+</body>
+
+</html>

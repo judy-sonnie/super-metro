@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver's Dashboard</title>
+    
+    <!-- Add this line to link the style.css file -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Driver's Dashboard</h1>
+        <h2>Reserved Seats</h2>
+        <ul>
+            {% for seat, status_info in seat_status.items() %}
+                {% if status_info['status'] == 'Reserved' %}
+                    <li>{{ seat }} - {{ status_info['name'] }} | Bus: {{ status_info['bus_number'] }} | Booking Time: {{ status_info['reservation_time'] }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+        <h2>Pickup Details</h2>
+        <p>Pickup Location Count:</p>
+        <ul>
+            {% for location, count in pickup_details['pickup_location_count'].items() %}
+                <li>{{ location }} - {{ count }}</li>
+            {% endfor %}
+        </ul>
+
+        <p>Pickup Time Count:</p>
+        <ul>
+            {% for time, count in pickup_details['pickup_time_count'].items() %}
+                <li>{{ time }} - {{ count }}</li>
+            {% endfor %}
+        </ul>
+
+        <p>Return Pickup Location Count:</p>
+        <ul>
+            {% for location, count in pickup_details['return_pickup_location_count'].items() %}
+                {% if count > 0 %}
+                    <li>{{ location }} - {{ count }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+        <p>Reserved Buses Count:</p>
+        <ul>
+            {% for bus, counts in pickup_details['bus_count'].items() %}
+                <li>{{ bus }} - Reserved Seats: {{ counts['reserved'] }} | Available Seats: {{ counts['available'] }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+
+</html>
