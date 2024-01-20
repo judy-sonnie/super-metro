@@ -1,0 +1,83 @@
+/* style.css */
+
+body {
+    font-family: 'Roboto', sans-serif; /* Use a readable font, 'Roboto' is just an example, you can replace it */
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8; /* Light background color */
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff; /* White background color */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Example box shadow */
+}
+
+h1 {
+    color: #fff; /* White text color */
+    background-color: #e74c3c; /* Red background color */
+    padding: 10px;
+    text-align: center;
+}
+
+h2, h3 {
+    color: #e74c3c; /* Red text color */
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333; /* Dark text color */
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #e74c3c; /* Red border for input fields */
+    border-radius: 5px; /* Rounded corners */
+}
+
+button {
+    padding: 12px;
+    background-color: #e74c3c; /* Red background color */
+    color: #fff; /* White text color */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition effect */
+}
+
+button:hover {
+    background-color: #c0392b; /* Darker red on hover */
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+    border: 1px solid #e74c3c; /* Red border for list items */
+    padding: 8px;
+    background-color: #f2dede; /* Light red background color */
+}
+
+/* Add specific styling for different types of information (location counts, time counts, etc.) */
+/* Feel free to adjust these styles based on your preferences */
+
+/* Example styling for location counts */
+.p-location {
+    color: #e74c3c; /* Red text color */
+}
+
+/* Example styling for time counts */
+.p-time {
+    color: #e74c3c; /* Red text color */
+}
