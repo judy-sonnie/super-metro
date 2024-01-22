@@ -7,111 +7,143 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SuperMetro Booking App : Koma to KNH Route. Karibu :)</title>
 
-    <!-- Add this line to link the style.css file -->
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Add the following lines to include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
-<body>
-    <h1>SuperMetro Booking App : Koma to KNH Route. Karibu :)</h1>
-    <p>Please fill in the details below:</p>
-    <form action="/book" method="post">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+<body class="bg-light">
 
-        <label for="pickup_location">Select Pick up Location:</label>
-        <select id="pickup_location" name="pickup_location">
-            <option value="">Select Pick up Location</option>
-            <option value="Koma">Koma</option>
-            <option value="Kantafu">Kantafu</option>
-            <option value="Malaa">Malaa</option>
-            <option value="Mutalia">Mutalia</option>
-            <option value="Kware">Kware</option>
-            <option value="Joska">Joska</option>
-            <option value="Timberyard">Timberyard</option>
-            <option value="Kamulu">Kamulu</option>
-            <option value="Kingoris">Kingoris</option>
-            <option value="Kanisani">Kanisani</option>
-            <option value="Ruai">Ruai</option>
-        </select>
+    <div class="container mt-5">
+        <img src="https://pbs.twimg.com/profile_images/1495775779300511754/JlzNTe6N_400x400.jpg" alt="bus" class="img-fluid">
+    </div>
 
-        <label for="pickup_time">Select Pick up Time:</label>
-        <select id="pickup_time" name="pickup_time">
-            <option value="">Select Pick up Time</option>
-            <option value="5:20AM">5:20AM</option>
-            <option value="5:30AM">5:30AM</option>
-            <option value="6:00AM">6:00AM</option>
-            <option value="6:30AM">6:30AM</option>
-            <option value="7:00AM">7:00AM</option>
-            <option value="4:00PM">4:00PM</option>
-            <option value="4:30PM">4:30PM</option>
-            <option value="5:00PM">5:00PM</option>
-            <option value="5:30PM">5:30PM</option>
-            <option value="6:00PM">6:00PM</option>
-        </select>
+    <div class="container mt-5">
+        <h1 class="text-center bg-primary text-white p-3 rounded">SuperMetro Booking App : Koma to KNH Route.
+            Karibu :)</h1>
+        <p class="mt-3">Please fill in the details below:</p>
 
-        <label for="seat_number">Select Seat no:</label>
-        <select id="seat_number" name="seat_number" required>
-            <!-- Options will be dynamically added using JavaScript in app.py -->
-        </select>
+        <form action="/book" method="post">
 
-        <label for="bus_number">Select Bus:</label>
-        <select id="bus_number" name="bus_number" required>
-            <option value="">Select Bus</option>
-            <option value="SM1">SM1</option>
-            <option value="SM2">SM2</option>
-            <option value="SM3">SM3</option>
-            <option value="SM4">SM4</option>
-            <option value="SM5">SM5</option>
-            <option value="SM6">SM6</option>
-            <option value="SM7">SM7</option>
-            <option value="SM8">SM8</option>
-            <option value="SM9">SM9</option>
-            <option value="SM10">SM10</option>
-        </select>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" class="form-control" required>
+            </div>
 
-        <label for="return_pickup_location">Select Return Pick Up Location:</label>
-        <select id="return_pickup_location" name="return_pickup_location">
-            <option value="">Select Return Pick Up Location</option>
-            <option value="Library">Library</option>
-            <option value="Hillpark">Hillpark</option>
-            <option value="Nyayo">Nyayo</option>
-            <option value="South C">South C</option>
-            <option value="Bellevue">Bellevue</option>
-            <option value="Airtel">Airtel</option>
-            <option value="GM">GM</option>
-        </select>
+            <div class="form-group">
+                <label for="pickup_location">Select Pick up Location:</label>
+                <select id="pickup_location" name="pickup_location" class="form-control">
+                    <option value="">Select Pick up Location</option>
+                    <option value="Koma">Koma</option>
+                    <option value="Kantafu">Kantafu</option>
+                    <option value="Malaa">Malaa</option>
+                    <option value="Mutalia">Mutalia</option>
+                    <option value="Kware">Kware</option>
+                    <option value="Joska">Joska</option>
+                    <option value="Timberyard">Timberyard</option>
+                    <option value="Kamulu">Kamulu</option>
+                    <option value="Kingoris">Kingoris</option>
+                    <option value="Kanisani">Kanisani</option>
+                    <option value="Ruai">Ruai</option>
+                    <!-- ... Options ... -->
+                </select>
+            </div>
 
-        <button type="submit">Submit</button>
-    </form>
+            <div class="form-group">
+                <label for="pickup_time">Select Pick up Time:</label>
+                <select id="pickup_time" name="pickup_time" class="form-control">
+                    <option value="">Select Pick up Time</option>
+                    <option value="">Select Pick up Time</option>
+                    <option value="5:20AM">5:20AM</option>
+                    <option value="5:30AM">5:30AM</option>
+                    <option value="6:00AM">6:00AM</option>
+                    <option value="6:30AM">6:30AM</option>
+                    <option value="7:00AM">7:00AM</option>
+                    <option value="4:00PM">4:00PM</option>
+                    <option value="4:30PM">4:30PM</option>
+                    <option value="5:00PM">5:00PM</option>
+                    <option value="5:30PM">5:30PM</option>
+                    <option value="6:00PM">6:00PM</option>
+                    <!-- ... Options ... -->
+                </select>
+            </div>
 
-    <form action="/cancel" method="post">
-        <label for="cancel_name">Name for Cancellation:</label>
-        <input type="text" id="cancel_name" name="cancel_name" required>
-        <button type="submit">Cancel Reservation</button>
-    </form>
+            <div class="form-group">
+                <label for="seat_number">Select Seat no:</label>
+                <select id="seat_number" name="seat_number" required class="form-control">
+                    <!-- Options will be dynamically added using JavaScript in app.py -->
+                </select>
+            </div>
 
-    <!-- Include jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <div class="form-group">
+                <label for="bus_number">Select Bus:</label>
+                <select id="bus_number" name="bus_number" class="form-control">
+                    <option value="">Select Bus</option>
+                    <!-- ... Options ... -->
+                    <option value="SM1">SM1</option>
+                    <option value="SM2">SM2</option>
+                    <option value="SM3">SM3</option>
+                    <option value="SM4">SM4</option>
+                    <option value="SM5">SM5</option>
+                    <option value="SM6">SM6</option>
+                    <option value="SM7">SM7</option>
+                    <option value="SM8">SM8</option>
+                    <option value="SM9">SM9</option>
+                    <option value="SM10">SM10</option>
+                </select>
+            </div>
 
-    <script>
-        // Fetch available seats and update the dropdown
-        $(document).ready(function () {
-            $.ajax({
-                url: '/get_available_seats',
-                type: 'POST',
-                success: function (data) {
-                    var seatDropdown = $('#seat_number');
-                    seatDropdown.empty();
-                    $.each(data.available_seats, function (index, seat) {
-                        seatDropdown.append($('<option>').text(seat).val(seat));
-                    });
-                }
+            <div class="form-group">
+                <label for="return_pickup_location">Select Return Pick Up Location:</label>
+                <select id="return_pickup_location" name="return_pickup_location" class="form-control">
+                    <option value="">Select Return Pick Up Location</option>
+                    <option value="Library">Library</option>
+                    <option value="Hillpark">Hillpark</option>
+                    <option value="Nyayo">Nyayo</option>
+                    <option value="South C">South C</option>
+                    <option value="Bellevue">Bellevue</option>
+                    <option value="Airtel">Airtel</option>
+                    <option value="GM">GM</option>
+                    <!-- ... Options ... -->
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <form action="/cancel" method="post" class="mt-3">
+            <div class="form-group">
+                <label for="cancel_name">Name for Cancellation:</label>
+                <input type="text" id="cancel_name" name="cancel_name" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-danger">Cancel Reservation</button>
+        </form>
+
+        <!-- Include jQuery and Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <script>
+            // Your JavaScript code here
+            $(document).ready(function () {
+                $.ajax({
+                    url: '/get_available_seats',
+                    type: 'POST',
+                    success: function (data) {
+                        var seatDropdown = $('#seat_number');
+                        seatDropdown.empty();
+                        $.each(data.available_seats, function (index, seat) {
+                            seatDropdown.append($('<option>').text(seat).val(seat));
+                        });
+                    }
+                });
             });
-        });
-    </script>
+        </script>
 
-    <!-- Link to the Driver's Dashboard -->
-    <a href="/driver_dashboard">Driver's Dashboard</a>
+        <!-- Link to the Driver's Dashboard -->
+        <a href="/driver_dashboard" class="btn btn-info mt-3">Driver's Dashboard</a>
+    </div>
 </body>
 
 </html>

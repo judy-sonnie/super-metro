@@ -1,29 +1,42 @@
 /* style.css */
 
 body {
-    font-family: 'Roboto', sans-serif; /* Use a readable font, 'Roboto' is just an example, you can replace it */
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f8f8; /* Light background color */
+    background-color: #f8f8f8;
+}
+/* style.css */
+
+.background-container {
+    background-image: url('smetro.jpeg'); /* Replace 'vehicle.jpg' with the actual file name */
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #fff; /* White background color */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Example box shadow */
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px; /* Rounded corners for the container */
 }
 
 h1 {
-    color: #fff; /* White text color */
-    background-color: #e74c3c; /* Red background color */
-    padding: 10px;
+    color: #fff;
+    background-color: #3498db; /* Blue background color */
+    padding: 20px;
     text-align: center;
+    margin-bottom: 20px;
+    border-radius: 10px; /* Rounded corners for the heading */
 }
 
 h2, h3 {
-    color: #e74c3c; /* Red text color */
+    color: #3498db;
 }
 
 form {
@@ -33,51 +46,62 @@ form {
 label {
     display: block;
     margin-bottom: 10px;
-    color: #333; /* Dark text color */
+    color: #333;
 }
 
 input, select {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin-bottom: 15px;
-    border: 1px solid #e74c3c; /* Red border for input fields */
-    border-radius: 5px; /* Rounded corners */
+    border: 1px solid #3498db;
+    border-radius: 5px;
+    transition: border-color 0.3s ease; /* Smooth transition effect */
+}
+
+input:focus, select:focus {
+    border-color: #2980b9; /* Darker blue when focused */
 }
 
 button {
-    padding: 12px;
-    background-color: #e74c3c; /* Red background color */
-    color: #fff; /* White text color */
+    padding: 15px;
+    background-color: #3498db;
+    color: #fff;
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Smooth transition effect */
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
 }
 
 button:hover {
-    background-color: #c0392b; /* Darker red on hover */
+    background-color: #2980b9;
 }
 
-ul {
-    list-style: none;
-    padding: 0;
+a {
+    color: #3498db;
+    text-decoration: none;
+    display: block;
+    margin-top: 20px;
 }
 
-li {
-    margin-bottom: 10px;
-    border: 1px solid #e74c3c; /* Red border for list items */
-    padding: 8px;
-    background-color: #f2dede; /* Light red background color */
+a:hover {
+    color: #2980b9;
 }
 
-/* Add specific styling for different types of information (location counts, time counts, etc.) */
-/* Feel free to adjust these styles based on your preferences */
+/* Style for the canceled reservation message */
+.cancel-message {
+    color: #e74c3c;
+    font-weight: bold;
+    margin-top: 10px;
+}
 
 /* Example styling for location counts */
 .p-location {
-    color: #e74c3c; /* Red text color */
+    color: #e74c3c;
+    font-weight: bold;
 }
 
 /* Example styling for time counts */
 .p-time {
-    color: #e74c3c; /* Red text color */
+    color: #e74c3c;
+    font-weight: bold;
 }

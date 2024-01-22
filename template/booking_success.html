@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -19,8 +19,87 @@
     <p>Please send money using Pochi La Biashara to this number: 0112049957</p>
     <p><a href="/">Return to Home</a></p>
 
-    <!-- Link to the Driver's Dashboard -->
-    <a href="/driver_dashboard">Driver's Dashboard</a>
+    <!Link to the Driver's Dashboard -->
+    <!-- <a href="/driver_dashboard">Driver's Dashboard</a> -->
+    <!-- <img src="blob:https://web.whatsapp.com/8429fedd-137c-4aa0-9d79-97bdab019cd0" alt="s-metro"> -->
+<!-- </body> -->
+
+<!-- </html> --> 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Successful</title>
+
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="style/css">
+
+    
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Booking Successful</h1>
+        <p>Thank you, <strong>{{ name }}</strong>, for booking a seat!</p>
+        <p><strong>Bus Number:</strong> {{ bus_number }}</p>
+        <p><strong>Seat Number:</strong> {{ seat_number }}</p>
+        <p><strong>Pickup Location:</strong> {{ pickup_location }}</p>
+        <p><strong>Pickup Time:</strong> {{ pickup_time }}</p>
+        <p><strong>Return Pickup Location:</strong> {{ return_pickup_location }}</p>
+        <p>Please send money using Pochi La Biashara to this number: <strong>0112049957</strong></p>
+        <p><a href="/">Return to Home</a></p>
+
+        <!-- Link to the Driver's Dashboard -->
+        <a href="/driver_dashboard">Driver's Dashboard</a>
+    </div>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
+
