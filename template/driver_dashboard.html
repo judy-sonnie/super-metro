@@ -1,82 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Driver's Dashboard</title>
+    <title>Driver Dashboard</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
 
-    <!-- Add Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Add your custom CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
+<body>
 
-<body class="bg-light">
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">Driver's Dashboard</h1>
+<h1>Driver Dashboard</h1>
 
-        <div class="row">
-            <div class="col-md-6">
-                <h2>Reserved Seats</h2>
-                <ul class="list-group">
-                    {% for seat, status_info in seat_status.items() %}
-                        {% if status_info['status'] == 'Reserved' %}
-                            <li class="list-group-item">
-                                {{ seat }} - {{ status_info['name'] }} | Bus: {{ status_info['bus_number'] }} | Booking Time: {{ status_info['reservation_time'] }}
-                            </li>
-                        {% endif %}
-                    {% endfor %}
-                </ul>
-            </div>
+<h2>Reserved Seats</h2>
 
-            <div class="col-md-6">
-                <h2>Pickup Details</h2>
+<!-- Display reserved seats in a table -->
+<table>
+    <thead>
+        <tr>
+            <th>Seat Number</th>
+            <th>Status</th>
+            <th>Passenger Name</th>
+            <th>Bus Number</th>
+            <th>Pickup Location</th>
+            <th>Pickup Time</th>
+            <th>Return Pickup Location</th>
+            <th>Reservation Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for seat, status_info in seat_status.items() %}
+        {% if status_info.status == 'Reserved' %}
+        <tr>
+            <td>{{ seat }}</td>
+            <td>{{ status_info.status }}</td>
+            <td>{{ status_info.name }}</td>
+            <td>{{ status_info.bus_number }}</td>
+            <td>{{ status_info.pickup_location }}</td>
+            <td>{{ status_info.pickup_time }}</td>
+            <td>{{ status_info.return_pickup_location }}</td>
+            <td>{{ status_info.reservation_time }}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
 
-                <div class="row">
-                    <div class="col">
-                        <p>Pickup Location Count:</p>
-                        <ul class="list-group">
-                            {% for location, count in pickup_details['pickup_location_count'].items() %}
-                                <li class="list-group-item">{{ location }} - {{ count }}</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
+<h2>Pickup Details</h2>
 
-                    <div class="col">
-                        <p>Pickup Time Count:</p>
-                        <ul class="list-group">
-                            {% for time, count in pickup_details['pickup_time_count'].items() %}
-                                <li class="list-group-item">{{ time }} - {{ count }}</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
+<!-- Display pickup details in a table -->
+<table>
+    <thead>
+        <tr>
+            <th>Pickup Location</th>
+            <th>Return Pickup Location</th>
+            <th>Bus Count</th>
+            <th>Pickup Time Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ pickup_details.pickup_location_count }}</td>
+            <td>{{ pickup_details.return_pickup_location_count }}</td>
+            <td>{{ pickup_details.bus_count }}</td>
+            <td>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pickup Time</th>
+                            <th>Count</th>
+                            <th>Locations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pickup_time, details in pickup_details.pickup_time_count.items() %}
+                        <tr>
+                            <td>{{ pickup_time }}</td>
+                            <td>{{ details.count }}</td>
+                            <td>{{ ', '.join(details.locations) }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
-                <p>Return Pickup Location Count:</p>
-                <ul class="list-group">
-                    {% for location, count in pickup_details['return_pickup_location_count'].items() %}
-                        {% if count > 0 %}
-                            <li class="list-group-item">{{ location }} - {{ count }}</li>
-                        {% endif %}
-                    {% endfor %}
-                </ul>
+<h2>Seat Availability</h2>
 
-                <p>Reserved Buses Count:</p>
-                <ul class="list-group">
-                    {% for bus, counts in pickup_details['bus_count'].items() %}
-                        <li class="list-group-item">{{ bus }} - Reserved Seats: {{ counts['reserved'] }} | Available Seats: {{ counts['available'] }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-    </div>
+<!-- Display seat availability in a table -->
+<table>
+    <thead>
+        <tr>
+            <th>Bus Number</th>
+            <th>Reserved Seats</th>
+            <th>Available Seats</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for bus_number, availability in pickup_details.seat_availability.items() %}
+        <tr>
+            <td>{{ bus_number }}</td>
+            <td>{{ availability.reserved }}</td>
+            <td>{{ availability.available }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
-    <!-- Include Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-
 </html>

@@ -9,7 +9,7 @@ body {
 /* style.css */
 
 .background-container {
-    background-image: url('smetro.jpeg'); /* Replace 'vehicle.jpg' with the actual file name */
+    background-image: url('/smetro.png'); /* Replace 'vehicle.jpg' with the actual file name */
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;

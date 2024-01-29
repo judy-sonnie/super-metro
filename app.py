@@ -18,19 +18,31 @@ reserved_buses = {}
 def home():
     return render_template('index.html', bus_numbers=bus_numbers)
 
+# Updated driver_dashboard function
 @app.route('/driver_dashboard')
 def driver_dashboard():
     reserved_seats = [seat for seat, status_info in seat_status.items() if status_info['status'] == 'Reserved']
+
+    # Count of reserved and available seats for each bus
+    reserved_seats_count = {bus_number: sum(1 for status_info in seat_status.values() if
+                                           status_info['status'] == 'Reserved' and status_info['bus_number'] == bus_number)
+                            for bus_number in bus_numbers}
+
+    available_seats_count = {bus_number: len(available_seats) - reserved_seats_count[bus_number]
+                             for bus_number in bus_numbers}
 
     pickup_details = {
         'pickup_location_count': count_reserved_locations('pickup_location'),
         'return_pickup_location_count': count_reserved_locations('return_pickup_location'),
         'bus_count': count_reserved_buses(),
         'pickup_time_count': count_pickup_times(),
-        'seat_availability': get_seat_availability()
+        'seat_availability': get_seat_availability(),
+        'reserved_seats_count': reserved_seats_count,
+        'available_seats_count': available_seats_count  # Add this line for available seats count
     }
 
-    return render_template('driver_dashboard.html', reserved_seats=reserved_seats, pickup_details=pickup_details, seat_status=seat_status)
+    return render_template('driver_dashboard.html', reserved_seats=reserved_seats, pickup_details=pickup_details,
+                           seat_status=seat_status)
 
 def count_reserved_locations(location_type):
     locations_count = {}
@@ -54,14 +66,20 @@ def count_pickup_times():
     for seat, status_info in seat_status.items():
         if status_info['status'] == 'Reserved':
             pickup_time = status_info['pickup_time']
+            pickup_location = status_info['pickup_location']
             if pickup_time:
-                pickup_times_count[pickup_time] = pickup_times_count.get(pickup_time, 0) + 1
+                if pickup_time not in pickup_times_count:
+                    pickup_times_count[pickup_time] = {'count': 0, 'locations': []}
+                pickup_times_count[pickup_time]['count'] += 1
+                if pickup_location:
+                    pickup_times_count[pickup_time]['locations'].append(pickup_location)
     return pickup_times_count
 
 def get_seat_availability():
     seat_availability = {}
     for bus_number in bus_numbers:
-        reserved_seats_count = sum(1 for status_info in seat_status.values() if status_info['status'] == 'Reserved' and status_info['bus_number'] == bus_number)
+        reserved_seats_count = sum(1 for status_info in seat_status.values() if
+                                   status_info['status'] == 'Reserved' and status_info['bus_number'] == bus_number)
         available_seats_count = len(available_seats) - reserved_seats_count
         seat_availability[bus_number] = {'reserved': reserved_seats_count, 'available': available_seats_count}
     return seat_availability
@@ -88,6 +106,10 @@ def book():
             update_reserved_locations_count('return_pickup_location', return_pickup_location)
             update_reserved_buses_count(bus_number)
 
+            # Check if the bus is fully booked
+            if reserved_buses[bus_number] >= len(available_seats):
+                mark_fully_booked(bus_number)
+
             return render_template('booking_success.html', name=name, bus_number=bus_number, seat_number=seat_number,
                                    pickup_location=pickup_location, pickup_time=pickup_time,
                                    return_pickup_location=return_pickup_location, reservation_time=current_time)
@@ -105,6 +127,12 @@ def update_reserved_buses_count(bus_number, increment=True):
     else:
         if bus_number in reserved_buses and reserved_buses[bus_number] > 0:
             reserved_buses[bus_number] -= 1
+
+def mark_fully_booked(bus_number):
+    # Additional logic to mark the bus as fully booked
+    # You can set a flag or update a status in your data structure
+    # For example: reserved_buses[bus_number] = 'Fully Booked'
+    pass
 
 @app.route('/cancel', methods=['POST'])
 def cancel():
@@ -131,7 +159,9 @@ def cancel():
 
 @app.route('/get_available_seats', methods=['POST'])
 def get_available_seats():
-    return jsonify(available_seats=[seat for seat, status_info in seat_status.items() if status_info['status'] == 'Available'])
+    reserved_seats = [seat for seat, status_info in seat_status.items() if status_info['status'] == 'Reserved']
+    available_seats_list = [seat for seat in available_seats if seat not in reserved_seats]
+    return jsonify(available_seats=available_seats_list)
 
 if __name__ == '__main__':
     app.run(debug=True)

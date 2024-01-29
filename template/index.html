@@ -15,7 +15,8 @@
 <body class="bg-light">
 
     <div class="container mt-5">
-        <img src="https://pbs.twimg.com/profile_images/1495775779300511754/JlzNTe6N_400x400.jpg" alt="bus" class="img-fluid">
+        <img src="https://pbs.twimg.com/profile_images/1495775779300511754/JlzNTe6N_400x400.jpg" alt="bus"
+            class="img-fluid">
     </div>
 
     <div class="container mt-5">
@@ -53,7 +54,6 @@
                 <label for="pickup_time">Select Pick up Time:</label>
                 <select id="pickup_time" name="pickup_time" class="form-control">
                     <option value="">Select Pick up Time</option>
-                    <option value="">Select Pick up Time</option>
                     <option value="5:20AM">5:20AM</option>
                     <option value="5:30AM">5:30AM</option>
                     <option value="6:00AM">6:00AM</option>
@@ -79,7 +79,6 @@
                 <label for="bus_number">Select Bus:</label>
                 <select id="bus_number" name="bus_number" class="form-control">
                     <option value="">Select Bus</option>
-                    <!-- ... Options ... -->
                     <option value="SM1">SM1</option>
                     <option value="SM2">SM2</option>
                     <option value="SM3">SM3</option>
@@ -124,24 +123,35 @@
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+        <!-- Dynamic seat dropdown population -->
         <script>
-            // Your JavaScript code here
             $(document).ready(function () {
                 $.ajax({
                     url: '/get_available_seats',
                     type: 'POST',
                     success: function (data) {
+                        console.log("Data received:", data);
+
                         var seatDropdown = $('#seat_number');
                         seatDropdown.empty();
-                        $.each(data.available_seats, function (index, seat) {
-                            seatDropdown.append($('<option>').text(seat).val(seat));
-                        });
+
+                        if (data && data.available_seats) {
+                            $.each(data.available_seats, function (index, seat) {
+                                seatDropdown.append($('<option>').text(seat).val(seat));
+                            });
+                        } else {
+                            console.error("No available seats data received or available_seats is not defined.");
+                        }
+                    },
+                    error: function (error) {
+                        console.error("Error fetching available seats:", error);
                     }
                 });
             });
         </script>
 
         <!-- Link to the Driver's Dashboard -->
+        <div id="bus_cover"></div>
         <a href="/driver_dashboard" class="btn btn-info mt-3">Driver's Dashboard</a>
     </div>
 </body>
